@@ -2,7 +2,7 @@
 --  DDL for Table Crawling(Cashe)
 --------------------------------------------------------
 
-CREATE TABLE "SYSTEM"."Crawling(Cashe)"
+CREATE TABLE "SYSTEM"."Crawling(Cache)"
 (	"Name(News)" VARCHAR2(255 BYTE),
      "URL(Cache)" VARCHAR2(255 BYTE) Primary Key ,
      "Date(Cache)" DATE,
@@ -15,7 +15,7 @@ CREATE TABLE "SYSTEM"."Crawling(Cashe)"
 --------------------------------------------------------
 
 CREATE TABLE "SYSTEM"."Crawling(Past)"
-(	"Name(News)" VARCHAR2(255 BYTE),
+(	 "Name(News)" VARCHAR2(255 BYTE),
      "URL(Past)" VARCHAR2(255 BYTE) Primary Key,
      "Date(Past)" DATE,
      "Head(Past)" VARCHAR2(255 BYTE),
@@ -32,7 +32,7 @@ CREATE TABLE "SYSTEM"."Crawling(Past)"
 --------------------------------------------------------
 
 CREATE TABLE "SYSTEM"."Crawling(Weekly)"
-(	"Startdate" DATE Primary Key ,
+(	 "Startdate" DATE Primary Key ,
      "Enddate" DATE,
      "Head(Weekly)" VARCHAR2(255 BYTE),
      "Largest1(Weekly)" VARCHAR2(255 BYTE),
@@ -48,7 +48,7 @@ CREATE TABLE "SYSTEM"."Crawling(Weekly)"
 --------------------------------------------------------
 
 CREATE TABLE "SYSTEM"."Crwaling(Now)"
-(	"Name(News)" VARCHAR2(255 BYTE),
+(	 "Name(News)" VARCHAR2(255 BYTE),
      "URL(Now)" VARCHAR2(255 BYTE) PRIMARY KEY ,
      "Date(Now)" DATE,
      "Head(Now)" VARCHAR2(255 BYTE),
