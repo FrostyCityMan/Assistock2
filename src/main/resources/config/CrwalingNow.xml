@@ -4,26 +4,54 @@
 
 <mapper namespace="Word">
     <select id="Word" resultType="CrwalingCacheDTO">
-        SELECT "Name(News)", "URL(Now)", "Date(Now)", "Head(Now)", "Largest1(Now)","Largest1(Now_number)",
-            "Largest2(Now)","Largest2(Now_number)","Largest3(Now)","Largest3(Now_number)"
-             ,"Largest4(Now)","Largest4(Now_number)","Largest5(Now)","Largest5(Now_number)","Entire(Now)"
-             ,"Entire(Now_number)"
+        SELECT "Name(News)"
+             , "URL(Now)"
+             , "Date(Now)"
+             , "Head(Now)"
+             , "Largest1(Now)"
+             , "Largest1(Now_number)"
+             , "Largest2(Now)"
+             , "Largest2(Now_number)"
+             , "Largest3(Now)"
+             , "Largest3(Now_number)"
+             , "Largest4(Now)"
+             , "Largest4(Now_number)"
+             , "Largest5(Now)"
+             , "Largest5(Now_number)"
+             , "Entire(Now)"
+             , "Entire(Now_number)"
+             , "Class(News)"
         FROM "Crwaling(Now)"
     </select>
 
-<!--    <insert id="Word(Stock)Insert" parameterType="CrwalingNowDTO">-->
-<!--        Insert Into "Word(Stock)"("Name(News)", "Name(Stock)", "Class(Item)", "URL(Now)", "Date(Now)", "Head(Now)", "Entire(Now)", "Score")-->
-<!--        Values (#{Name_News},#{Name_Stock},#{Class_Item},#{URL_Now},#{Date_Now},#{Head_Now},#{Entire_Now},#{Score})-->
-<!--    </insert>-->
+    <insert id="Word(Analysis)Insert" parameterType="CrwalingNowDTO">
+        Insert Into "Word(Analysis)"("Name(News)", "Name(Stock)","Name(Country)", "Class(Item)", "URL(Now)", "Date(Now)", "Head(Now)",
+                                  "Entire(Now)", "Score")
+        Values (#{Name_News}, #{Name_Stock},#{Name_Country},#{Class_Item}, #{URL_Now}, #{Date_Now}, #{Head_Now}, #{Entire_Now},
+                #{Score})
+    </insert>
 
-<!--    <select id="Name(Stock)" resultType="CrwalingNowDTO">-->
-<!--        select "Name(Stock)","Class(Item)"-->
-<!--        from "Stock"-->
-<!--    </select>-->
+    <select id="Name(Stock)" resultType="CrwalingCacheDTO">
+        select "Name(Stock)", "Class(Item)"
+        from "Stock"
+    </select>
 
     <select id="WordAnalysis" resultType="CrwalingNowDTO">
-        Select "Word","Score"
+        Select "Word", "Score"
         from "Word"
     </select>
+
+    <select id="Material" resultType="CrwalingNowDTO">
+        SELECT "Name(Country)", "Class(Item)"
+        FROM "Material"
+    </select>
+    <select id="WordCloud" resultType="CrwalingNowDTO" parameterType="Date">
+        SELECT "Name(News)", "Name(Stock)", "Class(Item)", "URL(Now)", "Date(Now)", "Head(Now)", "Entire(Now)", "Score", "Name(Country)"
+        FROM "Word(Analysis)"
+        WHERE "Date(Now)" = #{Date_Select}
+    </select>
+    <delete id="delete">
+        DELETE FROM "Crwaling(Now)"
+    </delete>
 </mapper>
 

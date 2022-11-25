@@ -10,6 +10,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<%--    --%>
+
+<%--    --%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="../js/jquery-3.6.1.min.js"></script>
@@ -23,9 +26,53 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/styles.css" rel="stylesheet" />
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+
     <title>index</title>
 </head>
 <body>
+<%----%>
+<script>
+    anychart.onDocumentReady(function () {
+        var data = [
+            {
+                "x": "IT",
+                "value": 590000000,
+                category: "Sino-Tibetan"
+            },
+            {
+                "x": "Python",
+                "value": 283000000,
+                category: "Indo-European"
+            },
+            {
+                "x": "소프트웨어",
+                "value": 544000000,
+                category: "Indo-European"
+            },
+            {
+                "x": "JAVA",
+                "value": 527000000,
+                category: "Indo-European"
+            }, {
+                "x": "C++",
+                "value": 422000000,
+                category: "Afro-Asiatic"
+            }, {
+                "x": "HTML",
+                "value": 620000000,
+                category: "Afro-Asiatic"
+            }
+        ];
+        var chart = anychart.tagCloud(data);
+        chart.angles([0]);
+        chart.container("container");
+        // chart.getCredits().setEnabled(false);
+        chart.draw();
+    });
+</script>
+<%----%>
 <!-- Responsive navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
@@ -56,15 +103,18 @@
         <div class="col-lg-8">
             <!-- Featured blog post-->
             <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                <div class="chart-area">
+                    <div id="container" style="width:100%; height:350px;">
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="small text-muted">여기다가,오늘날짜</div>
                     <h2 class="card-title">오늘의 키워드</h2>
-                    <p class="card-text">조회수 가장 높은 뉴스 헤드라인 1</p>
-                    <p class="card-text">조회수 가장 높은 뉴스 헤드라인 2</p>
-                    <p class="card-text">조회수 가장 높은 뉴스 헤드라인 3</p>
-                    <p class="card-text">조회수 가장 높은 뉴스 헤드라인 4</p>
-                    <p class="card-text">조회수 가장 높은 뉴스 헤드라인 5</p>
+                    <p class="card-text">점수가 가장 높은 뉴스 헤드라인 1</p>
+                    <p class="card-text">점수가 가장 높은 뉴스 헤드라인 2</p>
+                    <p class="card-text">점수가 가장 높은 뉴스 헤드라인 3</p>
+                    <p class="card-text">점수가 가장 높은 뉴스 헤드라인 4</p>
+                    <p class="card-text">점수가 가장 높은 뉴스 헤드라인 5</p>
                     <a class="btn btn-primary" href="#!">상세 보기</a>
                 </div>
             </div>
