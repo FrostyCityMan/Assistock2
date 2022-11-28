@@ -44,78 +44,86 @@ public class CrwalingCacheDAO {
                     urlSelect = "https://news.naver.com/main/list.naver?mode=LS2D&mid=shm&sid2=322&sid1=104&date="; //세계
                     Class_News = "세계";
                 }
-                outerLoop:
-                for (int j = 1; j < 255; j++) {
-
+                for (int A = 0; A < 22; A++) {
                     Date now = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                    String url = urlSelect + sdf.format(now) + "&page=" + j;
-                    Document doc = Jsoup.connect(url).get();
-                    Elements elements = doc.getElementsByAttributeValue("class", "list_body newsflash_body");
+                    Calendar cal = Calendar.getInstance();     //날짜 계산을 위해 Calendar 추상클래스 선언 getInstance()메소드 사용
+                    cal.setTime(now);
+                    cal.add(Calendar.DATE, -A);    //6개월 더하기
+                    String datecal = sdf.format(cal.getTime());
 
-                    Element element = elements.get(0);
-                    Elements photoElements = element.getElementsByAttributeValue("class", "photo");
-                    Elements Paging = doc.getElementsByAttributeValue("class", "next nclicks(fls.page)");
-
-                    for (int i = 0; i < photoElements.size(); i++) {
-                        try {
-                            Element articleElement = photoElements.get(i);
-                            Elements aElements = articleElement.select("a");
-                            Element aElement = aElements.get(0);
-
-                            String articleUrl = aElement.attr("href");        // 기사링크
-                            Element imgElement = aElement.select("img").get(0);
-                            String imgUrl = imgElement.attr("src");            // 사진링크
-                            String title = imgElement.attr("alt");            // 기사제목
-                            Document subDoc = Jsoup.connect(articleUrl).get();
-
-                            Elements bElement = subDoc.getElementsByAttributeValue("class", "media_end_head_top");
-                            Element comElement = bElement.select("img").get(0);
-                            String comTitle = comElement.attr("alt");            // 신문사
+                    outerLoop:
+                    for (int j = 1; j < 3; j++) {
 
 
-                            Element contentElement = subDoc.getElementById("dic_area");
-                            String content = contentElement.text();            // 기사내용
-                            Elements dateElement = subDoc.getElementsByAttributeValue("class", "media_end_head_info_datestamp_time _ARTICLE_DATE_TIME");
-                            String date = dateElement.attr("data-date-time");
-                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            Date newstime = formatter.parse(date);
+                        String url = urlSelect + datecal + "&page=" + j;
+                        Document doc = Jsoup.connect(url).get();
+                        Elements elements = doc.getElementsByAttributeValue("class", "list_body newsflash_body");
 
+                        Element element = elements.get(0);
+                        Elements photoElements = element.getElementsByAttributeValue("class", "photo");
+                        Elements Paging = doc.getElementsByAttributeValue("class", "next nclicks(fls.page)");
 
+                        for (int i = 0; i < photoElements.size(); i++) {
                             try {
-                                KomoranResult analyzeResultList = komoran.analyze(content);
-                                List<String> nounList = analyzeResultList.getNouns();
-                                String noun = nounList.toString();
-                                Set<String> set = new HashSet<String>(nounList);
-                                Map<String, Integer> map = new HashMap<>();
+                                Element articleElement = photoElements.get(i);
+                                Elements aElements = articleElement.select("a");
+                                Element aElement = aElements.get(0);
 
-                                for (String str : set) {
-                                    map.put(str, Collections.frequency(nounList, str));
-                                }
-                                List<String> listKeySet = new ArrayList<>(map.keySet());
-                                Collections.sort(listKeySet, (value1, value2) -> (map.get(value2).compareTo(map.get(value1))));
-                                System.out.println(Class_News);
+                                String articleUrl = aElement.attr("href");        // 기사링크
+                                Element imgElement = aElement.select("img").get(0);
+                                String imgUrl = imgElement.attr("src");            // 사진링크
+                                String title = imgElement.attr("alt");            // 기사제목
+                                Document subDoc = Jsoup.connect(articleUrl).get();
 
-                                sql.insert("Now.insert",
-                                        new CrwalingCacheDTO(comTitle, articleUrl, newstime, title, listKeySet.get(0),
-                                                map.get(listKeySet.get(0)), listKeySet.get(1), map.get(listKeySet.get(1)),
-                                                listKeySet.get(2), map.get(listKeySet.get(2))
-                                                , listKeySet.get(3), map.get(listKeySet.get(3)),
-                                                listKeySet.get(4), map.get(listKeySet.get(4)),
-                                                listKeySet.toString(), listKeySet.toArray().length, Class_News));// end of sql insert
+                                Elements bElement = subDoc.getElementsByAttributeValue("class", "media_end_head_top");
+                                Element comElement = bElement.select("img").get(0);
+                                String comTitle = comElement.attr("alt");            // 신문사
 
+
+                                Element contentElement = subDoc.getElementById("dic_area");
+                                String content = contentElement.text();            // 기사내용
+                                Elements dateElement = subDoc.getElementsByAttributeValue("class", "media_end_head_info_datestamp_time _ARTICLE_DATE_TIME");
+                                String date = dateElement.attr("data-date-time");
+                                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                Date newstime = formatter.parse(date);
+
+
+                                try {
+                                    KomoranResult analyzeResultList = komoran.analyze(content);
+                                    List<String> nounList = analyzeResultList.getNouns();
+                                    String noun = nounList.toString();
+                                    Set<String> set = new HashSet<String>(nounList);
+                                    Map<String, Integer> map = new HashMap<>();
+
+                                    for (String str : set) {
+                                        map.put(str, Collections.frequency(nounList, str));
+                                    }
+                                    List<String> listKeySet = new ArrayList<>(map.keySet());
+                                    Collections.sort(listKeySet, (value1, value2) -> (map.get(value2).compareTo(map.get(value1))));
+                                    System.out.println(Class_News);
+
+                                    sql.insert("Now.insert",
+                                            new CrwalingCacheDTO(comTitle, articleUrl, newstime, title, listKeySet.get(0),
+                                                    map.get(listKeySet.get(0)), listKeySet.get(1), map.get(listKeySet.get(1)),
+                                                    listKeySet.get(2), map.get(listKeySet.get(2))
+                                                    , listKeySet.get(3), map.get(listKeySet.get(3)),
+                                                    listKeySet.get(4), map.get(listKeySet.get(4)),
+                                                    listKeySet.toString(), listKeySet.toArray().length, Class_News));// end of sql insert
+
+                                } catch (Exception e) {
+
+                                    if (e.getClass().getName() == "org.apache.ibatis.exceptions.PersistenceException" && Paging.size() == 0) {
+                                        break outerLoop;
+                                    }
+                                    System.out.println(e.getClass().getName() + "형태소 예외가" + e.getMessage() + " 때문에 발생");
+                                }//end of 형태소 try-catch
                             } catch (Exception e) {
+                            }//스포츠,경제 판별 try-catch
 
-                                if (e.getClass().getName() == "org.apache.ibatis.exceptions.PersistenceException" && Paging.size() == 0) {
-                                    break outerLoop;
-                                }
-                                System.out.println(e.getClass().getName() + "형태소 예외가" + e.getMessage() + " 때문에 발생");
-                            }//end of 형태소 try-catch
-                        } catch (Exception e) {
-                        }//스포츠,경제 판별 try-catch
-
+                        }
+                        System.out.println(j + "page 크롤링 완료");
                     }
-                    System.out.println(j + "page 크롤링 완료");
                 }
                 System.out.println(Class_News + "편 완료");
             }

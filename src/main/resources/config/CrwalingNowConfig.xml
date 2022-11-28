@@ -9,6 +9,7 @@
     <typeAliases>
         <typeAlias type="Crwaling.Now.CrwalingNowDTO" alias="CrwalingNowDTO"/>
         <typeAlias type="Crwaling.Cache.CrwalingCacheDTO" alias="CrwalingCacheDTO"/>
+        <typeAlias type="Crwaling.Weekly.CrwalingWeeklyDTO" alias="CrwalingWeeklyDTO"/>
     </typeAliases>
 
     <!-- 오라클 DB -->

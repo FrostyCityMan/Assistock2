@@ -141,8 +141,6 @@ public class CrwalingCacheDTO {
     }
 
 
-    private String Name_News;
-
     public String getName_Stock() {
         return Name_Stock;
     }
@@ -189,6 +187,7 @@ public class CrwalingCacheDTO {
                 '}';
     }
 
+    private String Name_News;
     private String Name_Stock;
     private String Class_Item;
     private String URL_Now;

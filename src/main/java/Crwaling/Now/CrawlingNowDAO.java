@@ -103,11 +103,14 @@ public class CrawlingNowDAO {
                             .score(score)
                             .build();
                     sql.insert("Word.Word(Analysis)Insert", Word);
+
                 } catch (Exception e) {
                     System.out.println("SQL 입력에서 " + e.getClass().getName() + " 예외가" + e.getMessage() + " 때문에 발생");
                 }
+
+
             }//end of for
-            int result = sql.delete("Word.delete");
+//            int result = sql.delete("Word.delete");
         } catch (Exception e) {
             System.out.println(e.getClass().getName() + " 예외가" + e.getMessage() + " 때문에 발생");
         } //end of try-catch

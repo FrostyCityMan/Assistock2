@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"
          pageEncoding="UTF-8" isELIgnored="false" %>
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-assistock">
   <div class="container"><p class="m-0 text-center text-white">
     서울 강남구 테헤란로 124 4층<br/>
     전화:02-0000-0000/연락처:010-9143-0000/대표자:김도훈<br/>

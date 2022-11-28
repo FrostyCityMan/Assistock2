@@ -25,9 +25,11 @@
     </select>
 
     <insert id="Word(Analysis)Insert" parameterType="CrwalingNowDTO">
-        Insert Into "Word(Analysis)"("Name(News)", "Name(Stock)","Name(Country)", "Class(Item)", "URL(Now)", "Date(Now)", "Head(Now)",
-                                  "Entire(Now)", "Score")
-        Values (#{Name_News}, #{Name_Stock},#{Name_Country},#{Class_Item}, #{URL_Now}, #{Date_Now}, #{Head_Now}, #{Entire_Now},
+        Insert Into "Word(Analysis)"("Name(News)", "Name(Stock)", "Name(Country)", "Class(Item)", "URL(Now)",
+                                     "Date(Now)", "Head(Now)",
+                                     "Entire(Now)", "Score")
+        Values (#{Name_News}, #{Name_Stock}, #{Name_Country}, #{Class_Item}, #{URL_Now}, #{Date_Now}, #{Head_Now},
+                #{Entire_Now},
                 #{Score})
     </insert>
 
@@ -46,12 +48,26 @@
         FROM "Material"
     </select>
     <select id="WordCloud" resultType="CrwalingNowDTO" parameterType="Date">
-        SELECT "Name(News)", "Name(Stock)", "Class(Item)", "URL(Now)", "Date(Now)", "Head(Now)", "Entire(Now)", "Score", "Name(Country)"
+        SELECT "Name(News)",
+               "Name(Stock)",
+               "Class(Item)",
+               "URL(Now)",
+               "Date(Now)",
+               "Head(Now)",
+               "Entire(Now)",
+               "Score",
+               "Name(Country)"
         FROM "Word(Analysis)"
         WHERE "Date(Now)" = #{Date_Select}
     </select>
     <delete id="delete">
-        DELETE FROM "Crwaling(Now)"
+        DELETE
+        FROM "Crwaling(Now)"
     </delete>
+<insert id="WeeklyInsert" parameterType="CrwalingWeeklyDTO">
+    INSERT INTO "Crawling(Weekly)"("Startdate", "Enddate", "Entire(Weekly)")
+    VALUES (#{Startdate},#{Enddate},#{Entire(Weekly)})
+</insert>
+
 </mapper>
 
