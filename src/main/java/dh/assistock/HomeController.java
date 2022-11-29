@@ -22,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
             return mav;
 
         }//end of home
-        @RequestMapping("/pricing")
+        @RequestMapping("/Pricing")
         public ModelAndView pricing() {
             ModelAndView mav=new ModelAndView();
             mav.setViewName("/pricing/pricing");
@@ -36,6 +36,13 @@ import org.springframework.web.servlet.ModelAndView;
             mav.setViewName("/member/loginForm");
             System.out.println(mav.toString());
             return mav;
-
         }
+        @RequestMapping("/about")
+        public ModelAndView about() {
+            ModelAndView mav=new ModelAndView();
+            mav.setViewName("about");
+            System.out.println(mav.toString());
+            return mav;
+        }
+
 } //end of dh.assistock.HomeController class

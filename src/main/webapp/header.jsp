@@ -24,19 +24,20 @@
     <link rel="stylesheet" as="style"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard-dynamic-subset.css">
 
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <title>Assistock</title>
+    <title>당신의 투자를 위한
+        의사결정 지원 플랫폼, 어시스톡</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="../assets/Favi.ico"/>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../css/styles.css" rel="stylesheet"/>
+    <link href="../css/header.css" rel="stylesheet"/>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
 
-    <title>index</title>
+
 </head>
 <body>
 
@@ -44,20 +45,16 @@
 
 <%----%>
 <!-- Responsive navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-assistock" style="font: 20px Montserrat, sans-serif;">
-    <div class="container">
-        <img src="../images/Favi.png" style="width: 30px; padding-right: 5px; margin-right: 5px;">
-        <a class="navbar-brand" href="http://localhost:9095/">Assistock</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
-                class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="http://localhost:9095/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="http://localhost:9095/pricing">Pricing</a></li>
-                <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="http://localhost:9095/login">Login</a>
-            </ul>
-        </div>
+<header>
+<div style="background-color: #5271ff;">
+    <div class="top-nav container">
+        <div class="logo"><img src="../images/Favi.png" style="width: 40px; padding-right: 5px; margin-right: 5px;">ASSISTOCK</div>
+        <ul id="header">
+            <li><a href="http://localhost:9095/">Home</a></li>
+            <li><a href="http://localhost:9095/Pricing">Pricing</a></li>
+            <li><a href="http://localhost:9095/about">About</a></li>
+            <li><a href="http://localhost:9095/login">Login</a></li>
+        </ul>
     </div>
-</nav>
+</div>
+</header>
