@@ -69,7 +69,9 @@ public class CrawlingNowDAO {
 
                 try {
                     for (int c = 0; c < nounList.size(); c++) {
-                        if (nounList.contains("월드컵") || nounList.contains("축구")) {
+                        if (nounList.contains("월드컵") || nounList.contains("축구")
+                                || nounList.contains("카타르")|| nounList.contains(".co")
+                                || nounList.contains(".kr")) {
                             break;
                         }
                         if (Objects.equals(dto.getClass_News(), "경제")
@@ -114,5 +116,12 @@ public class CrawlingNowDAO {
         } catch (Exception e) {
             System.out.println(e.getClass().getName() + " 예외가" + e.getMessage() + " 때문에 발생");
         } //end of try-catch
+
+
     }//end of psvm
+
+    public void dayAnalysis(){
+        Komoran komoran = new Komoran(DEFAULT_MODEL.FULL);
+
+    }
 } //end of CrawlingNowDAO class

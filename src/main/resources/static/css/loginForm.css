@@ -3,6 +3,14 @@
  */
 
 @import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700&subset=latin-ext');
+@font-face{
+    font-family: AppleGothic;
+    src: url("../fonts/AppleSDGothicNeoM.ttf") format('truetype');
+}
+@font-face{
+    font-family: Glacial Indifference;
+    src: url("../fonts/GlacialIndifference-Bold.otf") format('opentype');
+}
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -19,7 +27,7 @@ body {
     background: #ededed;
     display: table-cell;
     vertical-align: middle;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Dosis', AppleGothic;
 }
 
 .sign-panels {
@@ -153,8 +161,8 @@ body {
     transition: all .3s ease;
 }
 .sign-panels input[type="checkbox"]:checked + label:before {
-    background: #FF5722;
-    box-shadow: 0 0 0 5px #FF5722;
+    background: #5271ff;
+    box-shadow: 0 0 0 5px #5271ff;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
 }
@@ -164,7 +172,24 @@ body {
     width: 50%;
     margin-top: 10px;
     height: 50px;
-    background: #ec581e;
+    background: #5271ff;
+    border-radius: 50px;
+    padding: 11px;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.btn-register {
+    display: inline-block;
+    width: 50%;
+    margin-top: 10px;
+    height: 50px;
+    background: #5271ff;
     border-radius: 50px;
     padding: 11px;
     font-size: 20px;
@@ -201,12 +226,22 @@ body {
 }
 
 .notification span {
-    color: #ec581e;
+    color: #5271ff;
+}
+
+.reginoti p {
+    font-size: 20px;
+    font-weight: 600;
+    color: #9f9f9f;
+}
+
+.reginoti span {
+    color: #5271ff;
 }
 
 .error {
     display: block;
-    color: #ec581e;
+    color: #5271ff;
     font-size: 20px;
     font-weight: 600;
     margin: 15px 0;
@@ -239,6 +274,10 @@ body {
     }
 
     .btn-signin {
+        width: 80%;
+    }
+
+    .btn-register{
         width: 80%;
     }
 

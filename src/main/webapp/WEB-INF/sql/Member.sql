@@ -23,3 +23,7 @@ CREATE TABLE "SYSTEM"."Register"
      "Name(Register)" VARCHAR2(255 BYTE)
 ) ;
 
+
+select "Name(Register)", "Email", ID, PW, "Class(Member)", "Date(Sub)", "Name(Member)", "Date(Join)", "Tel"
+From "Member"
+Where ID='mesl456' AND PW='sss456';

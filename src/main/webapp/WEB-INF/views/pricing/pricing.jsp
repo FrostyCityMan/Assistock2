@@ -15,66 +15,51 @@
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"></path>
     </symbol>
 </svg>
-<div class="container py-3">
 
-    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-        <h1 class="display-4 fw-normal">Pricing</h1>
-        <p class="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
-    </div>
-    <main>
-        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Free</h4>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>10 users included</li>
-                            <li>2 GB of storage</li>
-                            <li>Email support</li>
-                            <li>Help center access</li>
-                        </ul>
-                        <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
-                    </div>
+<link rel="stylesheet" href="../css/pricing.css">
+
+<div class="pricing-container py-3">
+
+    <div class="background">
+        <div class="pricing-container">
+            <div class="panel pricing-table">
+
+                <div class="pricing-plan">
+                    <img src="https://s22.postimg.cc/8mv5gn7w1/paper-plane.png" alt="" class="pricing-img">
+                    <h2 class="pricing-header">Personal</h2>
+                    <ul class="pricing-features">
+                        <li class="pricing-features-item">Custom domains</li>
+                        <li class="pricing-features-item">Sleeps after 30 mins of inactivity</li>
+                    </ul>
+                    <span class="pricing-price">Free</span>
+                    <a href="#/" class="pricing-button">Sign up</a>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm">
-                    <div class="card-header py-3">
-                        <h4 class="my-0 fw-normal">Pro</h4>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">$15<small class="text-muted fw-light">/mo</small></h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>20 users included</li>
-                            <li>10 GB of storage</li>
-                            <li>Priority email support</li>
-                            <li>Help center access</li>
-                        </ul>
-                        <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
-                    </div>
+
+                <div class="pricing-plan">
+                    <img src="https://s28.postimg.cc/ju5bnc3x9/plane.png" alt="" class="pricing-img">
+                    <h2 class="pricing-header">Small team</h2>
+                    <ul class="pricing-features">
+                        <li class="pricing-features-item">Never sleeps</li>
+                        <li class="pricing-features-item">Multiple workers for more powerful apps</li>
+                    </ul>
+                    <span class="pricing-price">$150</span>
+                    <a href="#/" class="pricing-button is-featured">Free trial</a>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                    <div class="card-header py-3 text-white bg-primary border-primary">
-                        <h4 class="my-0 fw-normal">Enterprise</h4>
-                    </div>
-                    <div class="card-body">
-                        <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                        <ul class="list-unstyled mt-3 mb-4">
-                            <li>30 users included</li>
-                            <li>15 GB of storage</li>
-                            <li>Phone and email support</li>
-                            <li>Help center access</li>
-                        </ul>
-                        <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button>
-                    </div>
+
+                <div class="pricing-plan">
+                    <img src="https://s21.postimg.cc/tpm0cge4n/space-ship.png" alt="" class="pricing-img">
+                    <h2 class="pricing-header">Enterprise</h2>
+                    <ul class="pricing-features">
+                        <li class="pricing-features-item">Dedicated</li>
+                        <li class="pricing-features-item">Simple horizontal scalability</li>
+                    </ul>
+                    <span class="pricing-price">$400</span>
+                    <a href="#/" class="pricing-button">Free trial</a>
                 </div>
+
             </div>
         </div>
+    </div>
 
         <h2 class="display-6 text-center mb-4">Compare plans</h2>
 

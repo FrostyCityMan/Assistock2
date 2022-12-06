@@ -20,7 +20,6 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="../js/jquery-3.6.1.min.js"></script>
     <script src="../js/jquery.cookie.js"></script>
-    <script src=../"js/scripts.js"></script>
     <link rel="stylesheet" as="style"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard-dynamic-subset.css">
 
@@ -31,7 +30,8 @@
     <title>당신의 투자를 위한
         의사결정 지원 플랫폼, 어시스톡</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/Favi.ico"/>
+        <link rel="icon" type="image/x-icon" href="../images/Favi4.png"/>
+
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="../css/header.css" rel="stylesheet"/>
     <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
@@ -48,12 +48,23 @@
 <header>
 <div style="background-color: #5271ff;">
     <div class="top-nav container">
-        <div class="logo"><img src="../images/Favi.png" style="width: 40px; padding-right: 5px; margin-right: 5px;">ASSISTOCK</div>
+        <div class="logo" >
+            <a href="http://192.168.14.24:9095/" style="color: white">
+                <img src="../images/Favi.png" style="width: 40px; padding-right: 5px; margin-right: 5px;">A S S I S T O C K
+            </a>
+        </div>
         <ul id="header">
-            <li><a href="http://localhost:9095/">Home</a></li>
-            <li><a href="http://localhost:9095/Pricing">Pricing</a></li>
-            <li><a href="http://localhost:9095/about">About</a></li>
-            <li><a href="http://localhost:9095/login">Login</a></li>
+            <li><a href="http://192.168.14.24:9095/">Home</a></li>
+            <li><a href="http://192.168.14.24:9095/Pricing">Pricing</a></li>
+            <li><a href="http://192.168.14.24:9095/about">About</a></li>
+            <%
+                if (session.getAttribute("ID") == null) {
+            %>
+            <li><a href="http://192.168.14.24:9095/login">Login</a></li>
+            <%} else {%>
+            <li><a href="http://192.168.14.24:9095/dashboard">대쉬보드</a></li>
+            <li><a class="btn-logout" href="http://192.168.14.24:9095/">Logout</a></li>
+            <% }%>
         </ul>
     </div>
 </div>

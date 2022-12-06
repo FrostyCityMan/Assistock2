@@ -44,7 +44,8 @@ public class CrwalingCacheDAO {
                     urlSelect = "https://news.naver.com/main/list.naver?mode=LS2D&mid=shm&sid2=322&sid1=104&date="; //세계
                     Class_News = "세계";
                 }
-                for (int A = 0; A < 22; A++) {
+//                for (int A = 0; A < 22; A++) {
+                for (int A = 0; A < 2; A++) {
                     Date now = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
                     Calendar cal = Calendar.getInstance();     //날짜 계산을 위해 Calendar 추상클래스 선언 getInstance()메소드 사용
@@ -53,7 +54,7 @@ public class CrwalingCacheDAO {
                     String datecal = sdf.format(cal.getTime());
 
                     outerLoop:
-                    for (int j = 1; j < 3; j++) {
+                    for (int j = 1; j < 200; j++) {
 
 
                         String url = urlSelect + datecal + "&page=" + j;
@@ -87,7 +88,7 @@ public class CrwalingCacheDAO {
                                 String date = dateElement.attr("data-date-time");
                                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                 Date newstime = formatter.parse(date);
-
+                                System.out.println(date);
 
                                 try {
                                     KomoranResult analyzeResultList = komoran.analyze(content);
@@ -98,13 +99,14 @@ public class CrwalingCacheDAO {
 
                                     for (String str : set) {
                                         map.put(str, Collections.frequency(nounList, str));
+                                        // 갯수 새기
                                     }
                                     List<String> listKeySet = new ArrayList<>(map.keySet());
                                     Collections.sort(listKeySet, (value1, value2) -> (map.get(value2).compareTo(map.get(value1))));
                                     System.out.println(Class_News);
 
                                     sql.insert("Now.insert",
-                                            new CrwalingCacheDTO(comTitle, articleUrl, newstime, title, listKeySet.get(0),
+                                            new CrwalingCacheDTO(comTitle, articleUrl, date, title, listKeySet.get(0),
                                                     map.get(listKeySet.get(0)), listKeySet.get(1), map.get(listKeySet.get(1)),
                                                     listKeySet.get(2), map.get(listKeySet.get(2))
                                                     , listKeySet.get(3), map.get(listKeySet.get(3)),

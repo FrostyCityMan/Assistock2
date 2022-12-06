@@ -20,7 +20,6 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="../js/jquery-3.6.1.min.js"></script>
     <script src="../js/jquery.cookie.js"></script>
-    <script src=../"js/scripts.js"></script>
     <link rel="stylesheet" as="style"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.5/dist/web/static/pretendard-dynamic-subset.css">
     <link rel="stylesheet" href="../css/Index.css">
@@ -32,11 +31,11 @@
     <title>당신의 투자를 위한
         의사결정 지원 플랫폼, 어시스톡</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/Favi.ico"/>
+    <link rel="icon" type="image/x-icon" href="../images/Favi4.png"/>
     <!-- Core theme CSS (includes Bootstrap)-->
     <%--    <link href="../css/styles.css" rel="stylesheet"/>--%>
-    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-    <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+    <!--    anyChart -->
+
 
 </head>
 <body>
@@ -49,16 +48,29 @@
 <!-- Page header with logo and tagline-->
 <header>
     <div class="top-nav container">
-        <div class="logo"><img src="../images/Favi.png" style="width: 40px; padding-right: 5px; margin-right: 5px;">ASSISTOCK</div>
+        <div class="logo">
+            <a href="http://192.168.14.24:9095/" style="color: white">
+                <img src="../images/Favi.png" style="width: 40px; padding-right: 5px; margin-right: 5px;">A S S I S T O
+                C K
+            </a>
+        </div>
         <ul>
-            <li><a href="http://localhost:9095/">Home</a></li>
-            <li><a href="http://localhost:9095/Pricing">Pricing</a></li>
-            <li><a href="http://localhost:9095/about">About</a></li>
-            <li><a href="http://localhost:9095/login">Login</a></li>
+            <li><a href="http://192.168.14.24:9095/">Home</a></li>
+            <li><a href="http://192.168.14.24:9095/Pricing">Pricing</a></li>
+            <li><a href="http://192.168.14.24:9095/about">About</a></li>
+            <%
+                if (session.getAttribute("ID") == null) {
+            %>
+            <li><a href="http://192.168.14.24:9095/login">Login</a></li>
+            <%} else {%>
+            <li><a href="http://192.168.14.24:9095/dashboard">대쉬보드</a></li>
+            <li><a class="btn-logout" href="http://192.168.14.24:9095/">Logout</a></li>
+            <% }%>
         </ul>
+
     </div> <!-- end top-nav -->
 
-    <div class="hero container">
+    <div class="hero container" id="top-nv">
         <div class="hero-image">
             <img src="../images/loginLogo.png"
                  alt="hero image">
@@ -68,8 +80,8 @@
                 의사결정 지원 플랫폼, 어시스톡</h1>
 
             <div class="hero-buttons">
-                <a href="http://localhost:9095/login" class="button button-white">가입하기</a>
-                <a href="http://localhost:9095/Pricing" class="button button-white">구독하기</a>
+                <a href="http://192.168.14.24:9095/login" class="button button-white">가입하기</a>
+                <a href="http://192.168.14.24:9095/Pricing" class="button button-white">구독하기</a>
             </div>
         </div> <!-- end hero-copy -->
 
@@ -83,190 +95,101 @@
 <div class="featured-section">
     <div class="container">
         <div class="intro-container">
-            내 모든 투자 결정을 한눈에 분석하고 한 곳에서 관리하세요.<br>
-            이제껏 경험 못 했던 쉽고 편리한 투자 분석 서비스,<br>
-            어시스톡과 함께라면 당신의 투자가 새로워질 거예요.
+            <p id="first-intro">
+                내 모든 투자 결정을 한눈에 분석하고 한 곳에서 관리하세요.<br>
+                이제껏 경험 못 했던 쉽고 편리한 투자 분석 서비스,<br>
+                어시스톡과 함께라면 당신의 투자가 새로워질 거예요.
+            </p>
         </div>
 
-        <div class="row">
-            <!-- Blog entries-->
-            <div class="col-lg-8">
-                <!-- Featured blog post-->
-                <div class="card mb-4">
-                    <div class="chart-area">
-                        <div id="container" style="width:100%; height:350px;">
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="small text-muted">여기다가,오늘날짜</div>
-                        <h2 class="card-title">오늘의 키워드</h2>
-                        <p class="card-text">점수가 가장 높은 뉴스 헤드라인 1</p>
-                        <p class="card-text">점수가 가장 높은 뉴스 헤드라인 2</p>
-                        <p class="card-text">점수가 가장 높은 뉴스 헤드라인 3</p>
-                        <p class="card-text">점수가 가장 높은 뉴스 헤드라인 4</p>
-                        <p class="card-text">점수가 가장 높은 뉴스 헤드라인 5</p>
-                        <a class="btn btn-primary" href="#!">상세 보기</a>
-                    </div>
-                </div>
-                <!-- Nested row for non-featured blog posts-->
-                <div class="row">
-                    <div class="col-lg-6">
-                        <!-- Blog post-->
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top"
-                                              src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                              alt="..."/></a>
-                            <div class="card-body">
-                                <div class="small text-muted">여기다가,오늘날짜</div>
-                                <h2 class="card-title h4">뉴스 1</h2>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Reiciendis
-                                    aliquid atque, nulla.</p>
-                                <a class="btn btn-primary" href="#!">상세보기</a>
-                            </div>
-                        </div>
-                        <!-- Blog post-->
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top"
-                                              src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                              alt="..."/></a>
-                            <div class="card-body">
-                                <div class="small text-muted">여기다가, 오늘날짜</div>
-                                <h2 class="card-title h4">뉴스</h2>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Reiciendis
-                                    aliquid atque, nulla.</p>
-                                <a class="btn btn-primary" href="#!">상세보기</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <!-- Blog post-->
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top"
-                                              src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                              alt="..."/></a>
-                            <div class="card-body">
-                                <div class="small text-muted">여기다가, 오늘날짜</div>
-                                <h2 class="card-title h4">뉴스</h2>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Reiciendis
-                                    aliquid atque, nulla.</p>
-                                <a class="btn btn-primary" href="#!">상세보기</a>
-                            </div>
-                        </div>
-                        <!-- Blog post-->
-                        <div class="card mb-4">
-                            <a href="#!"><img class="card-img-top"
-                                              src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                              alt="..."/></a>
-                            <div class="card-body">
-                                <div class="small text-muted">여기다가, 오늘날짜</div>
-                                <h2 class="card-title h4">뉴스</h2>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Reiciendis
-                                    aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>
-                                <a class="btn btn-primary" href="#!">상세보기</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Pagination-->
-                <nav aria-label="Pagination">
-                    <hr class="my-0"/>
-                    <ul class="pagination justify-content-center my-4">
-                        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"
-                                                          aria-disabled="true">Newer</a>
-                        </li>
-                        <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                    </ul>
-                </nav>
+        <section class="et-hero-tabs">
+            <div id="second-intro">
+                <img src="../images/Favi3.png">
+                <h1>사람과 세상,<br>
+                    그 이상을 연결하는 어시스톡 <br>
+                    실시간 무료로 즐겨보세요.</h1>
             </div>
-            <!-- Side widgets-->
-            <div class="col-lg-4">
-                <!-- Search widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Search</div>
-                    <div class="card-body">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Enter search term..."
-                                   aria-label="Enter search term..." aria-describedby="button-search"/>
-                            <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Categories widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Categories</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">Web Design</a></li>
-                                    <li><a href="#!">HTML</a></li>
-                                    <li><a href="#!">Freebies</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-sm-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="#!">JavaScript</a></li>
-                                    <li><a href="#!">CSS</a></li>
-                                    <li><a href="#!">Tutorials</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Side widget-->
-                <div class="card mb-4">
-                    <div class="card-header">Side Widget</div>
-                    <div class="card-body">You can put anything you want inside of these side widgets. They are easy
-                        to use,
-                        and feature the Bootstrap 5 card component!
-                    </div>
-                </div>
+            <div class="et-hero-tabs-container">
+                <a class="et-hero-tab" href="#tab-es6">오늘의 키워드</a>
+                <a class="et-hero-tab" href="#tab-flexbox">주가 분석</a>
+                <a class="et-hero-tab" href="#tab-react">원자재 분석</a>
+                <a class="et-hero-tab" href="#tab-angular">대쉬보드</a>
+                <a class="et-hero-tab" href="#tab-other">뉴스레터</a>
+                <span class="et-hero-tab-slider"></span>
             </div>
-        </div>
+        </section>
+
+        <!-- Main -->
+        <main class="et-main">
+            <section class="et-slide" id="tab-es6">
+                <img src="../images/loading.gif" id="loadimg">
+                <h1>오늘의 키워드</h1>
+                <h3>매일 수집된 뉴스 내 주요 키워드 (인물, 기관, 장소 등)를 분석하여 보여드려요.</h3>
+                <div id="wordCloud"></div>
+                <a href="javascript:void(0)" onclick="search1()">찾기</a>
+            </section>
+            <section class="et-slide" id="tab-flexbox">
+                <h1>주가 분석</h1>
+                <h3>국내 뉴스를 분석하여 주가 등락을 예측해드려요.</h3>
+                <h3>TO-DO : 주가 분석 사용방법 넣고 구독페이지 연결하기</h3>
+            </section>
+            <section class="et-slide" id="tab-react">
+                <h1>원자재 분석</h1>
+                <h3>국제 이슈를 분석하여 원자재 가격 등락을 예측해드려요.</h3>
+                <h3>TO-DO : 원자재 사용방법 넣고 구독페이지 연결하기</h3>
+            </section>
+            <section class="et-slide" id="tab-angular">
+                <h1>대쉬보드</h1>
+                <h3>개별 보고서 및 총 포트폴리오의 데이터를 분석해보세요.</h3>
+                <h3>TO-DO : 대쉬보드 ex페이지 하나 넣고 구독페이지 연결하기</h3>
+            </section>
+            <section class="et-slide" id="tab-other">
+                <h1>뉴스레터</h1>
+                <h3>장 시작전에 설정하신 키워드에 맞는 주식의 가격을 메일로 만나보세요.</h3>
+                <h3>TO-DO : 키워드 설정하는 모습 모여주기.</h3>
+            </section>
+        </main>
+
+
     </div>
 </div>
 <!-- Footer-->
 <footer class="site-footer">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-9">
                 <h6>About</h6>
-                <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to help the
-                    upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or
-                    snippets as the code wants to be simple. We will help programmers build up concepts in different
-                    programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL
-                    and Algorithm.</p>
+                <p class="text-justify">Assistock.co.kr 어시스톡 서비스는 종합일간지, 경제지, 지역일간지, 방송사 등과 같은 다양한
+                    언론사로부터 수집한 뉴스로 구성된 통합 <i>데이터베이스에 빅데이터 분석 기술을 접목하여 만든 새로운 뉴스 분석</i>
+                    서비스입니다. 어시스톡 서비스는 일회성으로 소모되는 뉴스 콘텐츠를 가치 있는 정보로 재사용할 수 있도록 최적의 분석
+                    환경을 제공합니다. <br> <br>
+                    <strong>(주)어시스톡</strong> <br>
+                    06234 서울 강남구 테헤란로 124 4층<br/>
+                    전화:02-0000-0000/ 연락처:010-9143-0000/ 대표자:김도훈<br/>
+
+                </p>
             </div>
 
-            <div class="col-xs-6 col-md-3">
-                <h6>Categories</h6>
-                <ul class="footer-links">
-                    <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-                    <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
-                    <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
-                    <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
-                    <li><a href="http://scanfcode.com/category/android/">Android</a></li>
-                    <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
-                </ul>
-            </div>
+            <%--            <div class="col-xs-6 col-md-3">--%>
+            <%--                <h6>Categories</h6>--%>
+            <%--                <ul class="footer-links">--%>
+            <%--                    <li><a href="http://scanfcode.com/category/c-language/">C</a></li>--%>
+            <%--                    <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>--%>
+            <%--                    <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>--%>
+            <%--                    <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>--%>
+            <%--                    <li><a href="http://scanfcode.com/category/android/">Android</a></li>--%>
+            <%--                    <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>--%>
+            <%--                </ul>--%>
+            <%--            </div>--%>
 
             <div class="col-xs-6 col-md-3">
                 <h6>Quick Links</h6>
                 <ul class="footer-links">
-                    <li><a href="http://scanfcode.com/about/">About Us</a></li>
-                    <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
-                    <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
-                    <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
-                    <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+                    <li><a href="http://192.168.14.24:9095/">Home</a></li>
+                    <li><a href="http://192.168.14.24:9095/Pricing">Pricing</a></li>
+                    <li><a href="http://192.168.14.24:9095/about">About</a></li>
+                    <li><a href="http://192.168.14.24:9095/login">Login</a></li>
+                    <li><a href="-">Sitemap</a></li>
                 </ul>
             </div>
         </div>
@@ -275,17 +198,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-sm-6 col-xs-12">
-                <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by
-                    <a href="#">Scanfcode</a>.
+                <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by
+                    <a href="#">Assistock</a>.
                 </p>
             </div>
 
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <ul class="social-icons">
                     <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+
                 </ul>
             </div>
         </div>
@@ -293,6 +214,9 @@
 </footer>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<%-- 워드 클라우드--%>
+<script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-tag-cloud.min.js"></script>
 <!-- Core theme JS-->
 <script src="../js/scripts.js"></script>
 </body>

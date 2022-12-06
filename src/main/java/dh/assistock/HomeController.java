@@ -3,16 +3,16 @@ package dh.assistock;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-    @Controller
+
+@Controller
     public class HomeController {
+
         public HomeController(){
             System.out.println("dh.assistock.HomeController created------");
 
         }// end of Test
+
 
         @RequestMapping("/")
         public ModelAndView home() {
@@ -30,13 +30,23 @@ import org.springframework.web.servlet.ModelAndView;
             return mav;
 
         }
-        @RequestMapping("/login")
-        public ModelAndView loginform() {
+    @RequestMapping("/dashboard")
+    public ModelAndView dashborad() {
+        ModelAndView mav=new ModelAndView();
+        mav.setViewName("dashboard/dashboard");
+        System.out.println(mav.toString());
+        return mav;
+
+    }
+        @RequestMapping("/login/findAccountFailed")
+        public ModelAndView loginFailed() {
             ModelAndView mav=new ModelAndView();
-            mav.setViewName("/member/loginForm");
+            mav.setViewName("/member/findAccountFailed");
             System.out.println(mav.toString());
             return mav;
+
         }
+
         @RequestMapping("/about")
         public ModelAndView about() {
             ModelAndView mav=new ModelAndView();
