@@ -10,6 +10,7 @@
         <typeAlias type="Crwaling.Now.CrwalingNowDTO" alias="CrwalingNowDTO"/>
         <typeAlias type="Crwaling.Cache.CrwalingCacheDTO" alias="CrwalingCacheDTO"/>
         <typeAlias type="Crwaling.Weekly.CrwalingWeeklyDTO" alias="CrwalingWeeklyDTO"/>
+        <typeAlias type="dh.assistock.wordcloud.WordCloudDTO" alias="WordCloudDTO"/>
     </typeAliases>
 
     <!-- 오라클 DB -->

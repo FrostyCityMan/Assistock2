@@ -47,27 +47,42 @@
         SELECT "Name(Country)", "Class(Item)"
         FROM "Material"
     </select>
-    <select id="WordCloud" resultType="CrwalingNowDTO" parameterType="Date">
-        SELECT "Name(News)",
-               "Name(Stock)",
-               "Class(Item)",
-               "URL(Now)",
-               "Date(Now)",
-               "Head(Now)",
-               "Entire(Now)",
-               "Score",
-               "Name(Country)"
-        FROM "Word(Analysis)"
-        WHERE "Date(Now)" = #{Date_Select}
-    </select>
+
     <delete id="delete">
         DELETE
         FROM "Crwaling(Now)"
     </delete>
-<insert id="WeeklyInsert" parameterType="CrwalingWeeklyDTO">
-    INSERT INTO "Crawling(Weekly)"("Startdate", "Enddate", "Entire(Weekly)")
-    VALUES (#{Startdate},#{Enddate},#{Entire(Weekly)})
-</insert>
+    <insert id="WeeklyInsert" parameterType="CrwalingWeeklyDTO">
+        INSERT INTO "Crawling(Weekly)"("Startdate", "Enddate", "Entire(Weekly)")
+        VALUES (#{Startdate}, #{Enddate}, #{Entire(Weekly)})
+    </insert>
+    <select id="Wordlist_eco" resultType="CrwalingNowDTO" parameterType="Date">
+        Select "Date(Now)", "Entire(Now)", "Name(Stock)"
+        From "Word(Analysis)"
+        WHERE Trunc(TO_DATE("Date(Now)", 'YYYY-MM-DD HH24:MI:SS')) = #{Date} And "Name(Country)" =' '
+    </select>
 
+    <select id="Wordlist_world" resultType="CrwalingNowDTO" parameterType="Date">
+        Select "Date(Now)", "Entire(Now)", "Name(Stock)"
+        From "Word(Analysis)"
+        WHERE Trunc(TO_DATE("Date(Now)", 'YYYY-MM-DD HH24:MI:SS')) = #{Date} And "Name(Stock)" =' '
+    </select>
+
+    <select id="datelist" resultType="Date">
+        SELECT (Trunc(TO_DATE("Date(Now)", 'YYYY-MM-DD HH24:MI:SS')) ) as "Date(Now)"
+        FROM "Word(Analysis)"
+        GROUP BY Trunc(TO_DATE("Date(Now)", 'YYYY-MM-DD HH24:MI:SS'))
+    </select>
+
+    <insert id="Word(dayAnalysis)Insert" parameterType="dh.assistock.wordcloud.WordCloudDTO">
+        Insert Into "Word(dayAnalysis)"("Date", "Word(Analysis)", "Word(Count)", "Class(News)")
+        VALUES (TO_Date(#{Date},'YYYY-MM-DD HH24:MI:SS'), #{Word_Analysis}, #{Word_Count},
+                #{Class_News})
+
+    </insert>
+    <delete id="Word(dayAnalysis)Delete" parameterType="String">
+        DELETE from "Word(dayAnalysis)"
+        WHERE "Word(Analysis)" = #{Word_Analysis}
+    </delete>
 </mapper>
 

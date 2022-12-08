@@ -24,6 +24,7 @@ $('.reginoti').hide();
 
 function loginInsert(){
     let insertData=$('#Loginfrm').serialize();
+    console.log(insertData);
     $.ajax({
         type: "POST",
         url: "/login/proc",
@@ -48,21 +49,10 @@ function loginInsert(){
 }
 
 // register
-$('.btn-register').click(function register() {
-    $('.signup form').hide();
-    $('.title p').hide();
-    $('.or').hide();
-    $('.btn-face').hide();
-    $('.btn-twitter').hide();
-    $('.reginoti').fadeIn(300);
-    $('.regist-name').text($('#Id').val());
 
+
+function memberInsert() {
     let insertData = $('#registerMember').serialize();
-    memberInsert(insertData);
-
-});//end og register
-
-function memberInsert(insertData) {
     $.ajax({
         type: "POST",
         url: "/login/register",
@@ -70,8 +60,18 @@ function memberInsert(insertData) {
         dataType: "json",
         success: function (result) {
             if (result != null) {
-                alert(result.message);
+                $('.signup form').hide();
+                $('.title p').hide();
+                $('.or').hide();
+                $('.btn-face').hide();
+                $('.btn-twitter').hide();
+                $('.reginoti').fadeIn(300);
+                $('.regist-name').text($('#Name_Member').val());
             }// end of if
+        },
+        error:function(error){
+            $('.error').text('회원가입에 실패하였습니다.');
+
         }// end of success
     });//end of ajax
 }//end of function

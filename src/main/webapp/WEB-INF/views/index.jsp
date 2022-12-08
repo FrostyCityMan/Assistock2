@@ -122,11 +122,26 @@
         <!-- Main -->
         <main class="et-main">
             <section class="et-slide" id="tab-es6">
-                <img src="../images/loading.gif" id="loadimg">
                 <h1>오늘의 키워드</h1>
                 <h3>매일 수집된 뉴스 내 주요 키워드 (인물, 기관, 장소 등)를 분석하여 보여드려요.</h3>
-                <div id="wordCloud"></div>
-                <a href="javascript:void(0)" onclick="search1()">찾기</a>
+                <div id="loader-wrapper">
+                    <div id="loader"></div>
+
+                    <div class="loader-section section-left"></div>
+                    <div class="loader-section section-right"></div>
+
+                </div>
+                <div id="wordCloud">
+
+                </div>
+                <form id="keywordFrm">
+                    <input type="date" id="keywordDate" name="keywordDate"> <br><br>
+                    <input type="radio" id="keyword_eco" value="경제" name="select_class"/>경제
+                    <input type="radio" id="keyword_world" value="세계" name="select_class"/>세계 <br><br>
+                    <a id="btn-search" href="javascript:void(0)" onclick="search1()" class="button button-black">찾기</a>
+                </form>
+                <a id="btn-research" href="javascript:void(0)" onclick="research1()" class="button button-black">다시
+                    찾기</a>
             </section>
             <section class="et-slide" id="tab-flexbox">
                 <h1>주가 분석</h1>
@@ -141,11 +156,13 @@
             <section class="et-slide" id="tab-angular">
                 <h1>대쉬보드</h1>
                 <h3>개별 보고서 및 총 포트폴리오의 데이터를 분석해보세요.</h3>
+                <img src="../images/dash.png" style="width:800px;">
                 <h3>TO-DO : 대쉬보드 ex페이지 하나 넣고 구독페이지 연결하기</h3>
             </section>
             <section class="et-slide" id="tab-other">
                 <h1>뉴스레터</h1>
                 <h3>장 시작전에 설정하신 키워드에 맞는 주식의 가격을 메일로 만나보세요.</h3>
+                <img src="../images/mailing.png" style="width:500px;">
                 <h3>TO-DO : 키워드 설정하는 모습 모여주기.</h3>
             </section>
         </main>
@@ -217,8 +234,9 @@
 <%-- 워드 클라우드--%>
 <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
 <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-tag-cloud.min.js"></script>
+
+
 <!-- Core theme JS-->
 <script src="../js/scripts.js"></script>
-</body>
 </body>
 </html>
