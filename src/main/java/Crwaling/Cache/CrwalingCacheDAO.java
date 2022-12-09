@@ -80,6 +80,8 @@ public class CrwalingCacheDAO {
                                 Elements bElement = subDoc.getElementsByAttributeValue("class", "media_end_head_top");
                                 Element comElement = bElement.select("img").get(0);
                                 String comTitle = comElement.attr("alt");            // 신문사
+
+
                                 Element contentElement = subDoc.getElementById("dic_area");
                                 String content = contentElement.text();            // 기사내용
                                 Elements dateElement = subDoc.getElementsByAttributeValue("class", "media_end_head_info_datestamp_time _ARTICLE_DATE_TIME");

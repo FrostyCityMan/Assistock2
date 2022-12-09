@@ -103,7 +103,6 @@
             <div class="or"><span>OR</span></div>
 
             <form name="registerMember" id="registerMember" METHOD="post" onclick="">
-                <span class="error" ></span>
                 <input type="hidden" name="Name_Register" value="어시스톡">
                 <input type="hidden" name="Class_Member" value="회원">
                 <input type="text" name="Regi_Id" id="Regi_Id" placeholder="아이디를 입력해주세요.">
@@ -113,7 +112,7 @@
                 <input type="text" name="Email" id="Email" placeholder="이메일 주소를 입력해주세요.">
                 <input type="text" name="Tel" id="Tel" placeholder="연락처를 입력해주세요.">
 
-                <a  class="btn-register" onclick="memberInsert()">회원가입</a>
+                <a href="javascript:void(0)" class="btn-register">회원가입</a>
                 <a href="javascript:void(0)" class="btn-login btn-fade">Already have an account, Sign In <i
                         class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
             </form>

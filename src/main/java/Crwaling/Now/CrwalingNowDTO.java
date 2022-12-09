@@ -2,8 +2,6 @@ package Crwaling.Now;
 
 import lombok.*;
 
-import java.util.Date;
-
 @Getter
 @Setter
 @ToString
@@ -31,19 +29,10 @@ public class CrwalingNowDTO {
     private String Name_Country;
     private String URL_Now;
     private String Date_Now;
-
-    public CrwalingNowDTO(String date_Now, String entire_Now, String name_Stock) {
-        Date_Now = date_Now;
-        Entire_Now = entire_Now;
-        Name_Stock = name_Stock;
-    }
-
     private String Head_Now;
     private String Entire_Now;
     private String Word;
     private int Score;
-
-    private Date Date_All;
 
     public CrwalingNowDTO(String name_News, String name_Stock, String class_Item,  String URL_Now, String date_Now, String head_Now, String entire_Now, int score,String name_Country) {
         Name_News = name_News;
