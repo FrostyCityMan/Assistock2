@@ -8,7 +8,7 @@
 
 //logout버튼
 
-$('.btn-logout').click(function logout(){
+$('.btn-logout').click(function logout() {
     $.ajax({
         type: "POST",
         url: "/login/logout",
@@ -18,11 +18,11 @@ $('.btn-logout').click(function logout(){
 
 //슬라이드 점멸
 
-let observer = new IntersectionObserver((e)=>{
-    e.forEach((box)=>{
-        if(box.isIntersecting){
+let observer = new IntersectionObserver((e) => {
+    e.forEach((box) => {
+        if (box.isIntersecting) {
             box.target.style.opacity = 1;
-        }else{
+        } else {
             box.target.style.opacity = 0;
         }
     })
@@ -40,22 +40,21 @@ $("#wordCloud").hide()
 $("#loadimg").hide()
 
 
-
-function search1(){
+function search1() {
     $('#loadimg').fadeIn(300);
     $('#wordCloud')
         .empty()
     $.ajax({
         type: "POST",
         url: "/wordCloud",
-        dataType:'json',
-        contentType:"application/json;charset=utf-8",
-        success:function(result){
+        dataType: 'json',
+        contentType: "application/json;charset=utf-8",
+        success: function (result) {
             $("#loadimg").hide();
             $("#wordCloud").fadeIn(300);
-            var data =JSON.parse(JSON.stringify(result));
+            var data = JSON.parse(JSON.stringify(result));
 
-            var chart=anychart.tagCloud(data);
+            var chart = anychart.tagCloud(data);
 
             chart.title("Today's Keyword");
             chart.container("wordCloud");
@@ -67,14 +66,11 @@ function search1(){
             chart.fontFamily("AppleGothic");
             chart.fontSize(12);
         },//end of success
-        error:function(result) {
+        error: function (result) {
             alert(result.message);
         }//end of error
     })//end of ajax
 }//end of function search
-
-
-
 
 
 //
@@ -365,17 +361,21 @@ class StickyNavigation {
         this.currentTab = null;
         this.tabContainerHeight = 70;
         let self = this;
-        $('.et-hero-tab').click(function() {
+        $('.et-hero-tab').click(function () {
             self.onTabClick(event, $(this));
         });
-        $(window).scroll(() => { this.onScroll(); });
-        $(window).resize(() => { this.onResize(); });
+        $(window).scroll(() => {
+            this.onScroll();
+        });
+        $(window).resize(() => {
+            this.onResize();
+        });
     }
 
     onTabClick(event, element) {
         event.preventDefault();
         let scrollTop = $(element.attr('href')).offset().top - this.tabContainerHeight + 1;
-        $('html, body').animate({ scrollTop: scrollTop }, 600);
+        $('html, body').animate({scrollTop: scrollTop}, 600);
     }
 
     onScroll() {
@@ -384,17 +384,16 @@ class StickyNavigation {
     }
 
     onResize() {
-        if(this.currentId) {
+        if (this.currentId) {
             this.setSliderCss();
         }
     }
 
     checkTabContainerPosition() {
         let offset = $('.et-hero-tabs').offset().top + $('.et-hero-tabs').height() - this.tabContainerHeight;
-        if($(window).scrollTop() > offset) {
+        if ($(window).scrollTop() > offset) {
             $('.et-hero-tabs-container').addClass('et-hero-tabs-container--top');
-        }
-        else {
+        } else {
             $('.et-hero-tabs-container').removeClass('et-hero-tabs-container--top');
         }
     }
@@ -403,16 +402,16 @@ class StickyNavigation {
         let newCurrentId;
         let newCurrentTab;
         let self = this;
-        $('.et-hero-tab').each(function() {
+        $('.et-hero-tab').each(function () {
             let id = $(this).attr('href');
             let offsetTop = $(id).offset().top - self.tabContainerHeight;
             let offsetBottom = $(id).offset().top + $(id).height() - self.tabContainerHeight;
-            if($(window).scrollTop() > offsetTop && $(window).scrollTop() < offsetBottom) {
+            if ($(window).scrollTop() > offsetTop && $(window).scrollTop() < offsetBottom) {
                 newCurrentId = id;
                 newCurrentTab = $(this);
             }
         });
-        if(this.currentId != newCurrentId || this.currentId === null) {
+        if (this.currentId != newCurrentId || this.currentId === null) {
             this.currentId = newCurrentId;
             this.currentTab = newCurrentTab;
             this.setSliderCss();
@@ -422,7 +421,7 @@ class StickyNavigation {
     setSliderCss() {
         let width = 0;
         let left = 0;
-        if(this.currentTab) {
+        if (this.currentTab) {
             width = this.currentTab.css('width');
             left = this.currentTab.offset().left;
         }

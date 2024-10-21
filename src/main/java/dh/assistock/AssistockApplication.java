@@ -19,25 +19,25 @@ import javax.sql.DataSource;
 @SpringBootApplication
 public class AssistockApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(AssistockApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(AssistockApplication.class, args);
+	}
 
 
-    @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource)throws Exception {
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(dataSource);
-        Resource[] res=new PathMatchingResourcePatternResolver().getResources(
-                "classpath:mappers/*.xml");
-        bean.setMapperLocations(res);
-        return bean.getObject();
+	@Bean
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+		bean.setDataSource(dataSource);
+		Resource[] res = new PathMatchingResourcePatternResolver().getResources(
+				"classpath:mappers/*.xml");
+		bean.setMapperLocations(res);
+		return bean.getObject();
 
-    }//end of sql session factory
+	}//end of sql session factory
 
-    @Bean
-    public SqlSession sqlSession(SqlSessionFactory sqlSessionFactory) {
-        return new SqlSessionTemplate(sqlSessionFactory);
-    }//end of bean
+	@Bean
+	public SqlSession sqlSession(SqlSessionFactory sqlSessionFactory) {
+		return new SqlSessionTemplate(sqlSessionFactory);
+	}//end of bean
 
 }

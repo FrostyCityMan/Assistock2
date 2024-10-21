@@ -22,8 +22,8 @@ $('.reginoti').hide();
 
 //signin
 
-function loginInsert(){
-    let insertData=$('#Loginfrm').serialize();
+function loginInsert() {
+    let insertData = $('#Loginfrm').serialize();
     $.ajax({
         type: "POST",
         url: "/login/proc",
@@ -87,7 +87,6 @@ $('.btn-login').click(function () {
 $('.notification').hide();
 
 
-
 function findInsert() {
     let insertData = $('#resetPassword').serialize();
     $.ajax({
@@ -111,7 +110,6 @@ function findInsert() {
         }
     });
 }
-
 
 
 // 네이버 로그인

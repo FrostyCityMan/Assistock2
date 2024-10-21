@@ -3,14 +3,17 @@
  */
 
 @import url('https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700&subset=latin-ext');
-@font-face{
+
+@font-face {
     font-family: AppleGothic;
     src: url("../fonts/AppleSDGothicNeoM.ttf") format('truetype');
 }
-@font-face{
+
+@font-face {
     font-family: Glacial Indifference;
     src: url("../fonts/GlacialIndifference-Bold.otf") format('opentype');
 }
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -38,7 +41,8 @@ body {
     border-radius: 20px;
     text-align: center;
 }
-.login,.signup {
+
+.login, .signup {
     position: relative;
 }
 
@@ -58,7 +62,7 @@ body {
     font-weight: 500;
 }
 
-.btn-face,.btn-twitter {
+.btn-face, .btn-twitter {
     color: #fff;
     display: inline-block;
     width: 200px;
@@ -70,7 +74,7 @@ body {
     font-weight: 500;
 }
 
-.btn-face .fa,.btn-twitter .fa {
+.btn-face .fa, .btn-twitter .fa {
     margin-right: 5px;
 }
 
@@ -125,7 +129,7 @@ body {
 }
 
 .sign-panels input:focus {
-    outline:none;
+    outline: none;
 }
 
 .sign-panels input[type="checkbox"] {
@@ -160,6 +164,7 @@ body {
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
 }
+
 .sign-panels input[type="checkbox"]:checked + label:before {
     background: #5271ff;
     box-shadow: 0 0 0 5px #5271ff;
@@ -201,7 +206,7 @@ body {
     cursor: pointer;
 }
 
-.btn-reset,.btn-member,.btn-fade {
+.btn-reset, .btn-member, .btn-fade {
     font-size: 19px;
     font-weight: 500;
     color: #9f9f9f;
@@ -211,11 +216,12 @@ body {
     text-decoration: none;
 
 }
+
 .btn-member {
     margin-top: 15px;
 }
 
-.btn-reset .fa,.btn-member .fa {
+.btn-reset .fa, .btn-member .fa {
     margin-left: 6px;
 }
 
@@ -262,6 +268,7 @@ body {
     .btn-face, .btn-twitter {
         width: 100%;
     }
+
     .btn-face {
         margin-right: 0;
         margin-bottom: 25px;
@@ -277,7 +284,7 @@ body {
         width: 80%;
     }
 
-    .btn-register{
+    .btn-register {
         width: 80%;
     }
 

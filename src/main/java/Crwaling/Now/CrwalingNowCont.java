@@ -13,12 +13,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class CrwalingNowCont {
-    public CrwalingNowCont() {
-        System.out.println("CrwalingNowCont Start--------");
-    }
+	public CrwalingNowCont() {
+		System.out.println("CrwalingNowCont Start--------");
+	}
 
-    @Autowired
-    CrawlingNowDAO Nowdao;
+	@Autowired
+	CrawlingNowDAO Nowdao;
 
 //    @RequestMapping(value="/",method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
 //    @ResponseBody
