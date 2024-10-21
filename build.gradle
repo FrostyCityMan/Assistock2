@@ -3,7 +3,6 @@ plugins {
     id 'war'
     id 'org.springframework.boot' version '2.7.5'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-    id 'org.springframework.experimental.aot' version '0.12.1'
 }
 
 group = 'DH'
@@ -18,8 +17,11 @@ configurations {
 
 repositories {
     maven { url 'https://repo.spring.io/release' }
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
     maven { url 'https://jitpack.io' }
     mavenCentral()
+    maven { url 'https://repo.spring.io/plugins-release' } // 이 줄을 추가
 }
 
 ext {
@@ -39,36 +41,16 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
     implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '9.0.58'
-    // https://mvnrepository.com/artifact/javax.servlet/jstl
     implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
-    // Apache Commons FileUpload 파일 업로드할 때 필요한 라이브러리
-    // https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
-    // 자바 웹메일 라이브러리
-    // https://mvnrepository.com/artifact/javax.mail/mail
     implementation group: 'javax.mail', name: 'mail', version: '1.4.7'
-    // json simple 라이브러리
-    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
-    // jsoup 라이브러리
-    // https://mvnrepository.com/artifact/org.jsoup/jsoup
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.15.3'
-    // KOMORAN 형태소분리기
-    // https://mvnrepository.com/artifact/com.github.shin285/KOMORAN
     implementation group: 'com.github.shin285', name: 'KOMORAN', version: '3.3.4'
-    // https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1
     implementation group: 'org.bgee.log4jdbc-log4j2', name: 'log4jdbc-log4j2-jdbc4.1', version: '1.16'
-
-    // https://mvnrepository.com/artifact/com.github.scribejava/scribejava-core
     implementation group: 'com.github.scribejava', name: 'scribejava-core', version: '8.3.1'
-
-
-
-
 }
-
 
 dependencyManagement {
     imports {
